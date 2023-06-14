@@ -2,14 +2,14 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    
+    swcPlugins: [["next-superjson-plugin", {}]]
   },
   images: {
     domains: [
-      "res.cloudinary.com",
-      "avatars.githubusercontent.com",
-      "lh3.googleusercontent.com",
-      "cdn.discordapp.com"
+      'res.cloudinary.com', 
+      'avatars.githubusercontent.com',
+      'lh3.googleusercontent.com',
+      'cdn.discordapp.com'
     ]
   }
 }

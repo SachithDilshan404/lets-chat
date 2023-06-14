@@ -4,7 +4,7 @@ import Button from "@/app/components/Button";
 import Input from "../../components/inputs/Input";
 import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import AuthSocialButton from "@/app/components/AuthSocialButton";
+import AuthSocialButton from "@/app/(site)/components/AuthSocialButton";
 import { BsDiscord, BsGithub, BsGoogle } from "react-icons/bs";
 import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";

@@ -138,6 +138,7 @@ const AuthForm = () => {
                 fullwidth
                 type="submit"
                 >
+                  //@ts-expect-error
                     {variant === 'LOGIN' ? 'Sign in' : 'Register'}
                 </Button>
             </div>

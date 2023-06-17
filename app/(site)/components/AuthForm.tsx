@@ -15,12 +15,12 @@ type Variant = "LOGIN" | "REGISTER";
 const AuthForm = () => {
   const session = useSession();
   const router = useRouter();
-  const [variant, setVariant] = useState<Variant>('LOGIN');
+  const [variant, setVariant] = useState<Variant>("LOGIN");
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect (() => {
-    if (session?.status === 'authenticated') {
-      router.push('/users');
+  useEffect(() => {
+    if (session?.status === "authenticated") {
+      router.push("/users");
     }
   }, [session?.status, router]);
 
@@ -35,12 +35,12 @@ const AuthForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: '',
-      email: '',
-      password: ''
+      name: "",
+      email: "",
+      password: "",
     },
   });
 
@@ -48,43 +48,43 @@ const AuthForm = () => {
     setIsLoading(true);
 
     if (variant === "REGISTER") {
-      axios.post('/api/register', data)
-      .then(() => signIn('credentials', data))
-      .catch(() => toast.error('Somthing went wrong!'))
-      .finally(() => setIsLoading(false))
+      axios
+        .post("/api/register", data)
+        .then(() => signIn("credentials", data))
+        .catch(() => toast.error("Somthing went wrong!"))
+        .finally(() => setIsLoading(false));
     }
     if (variant === "LOGIN") {
-      signIn('credentials', {
+      signIn("credentials", {
         ...data,
-        redirect: false
+        redirect: false,
       })
-      .then((callback) => {
-        if (callback?.error) {
-          toast.error('Invalid credentials');
-        }
-        if (callback?.ok && !callback?.error) {
-          toast.success('Logged In!');
-          router.push('/users');
-        }
-      })
-      .finally(() => setIsLoading(false));
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error("Invalid credentials");
+          }
+          if (callback?.ok && !callback?.error) {
+            toast.success("Logged In!");
+            router.push("/users");
+          }
+        })
+        .finally(() => setIsLoading(false));
     }
-  }
+  };
 
   const socialAction = (action: string) => {
     setIsLoading(true);
 
-    signIn(action, { redirect: false})
-    .then((callback) => {
-      if (callback?.error) {
-        toast.error('Invalid Credentials')
-      }
-      if (callback?.ok && !callback?.error) {
-        toast.success('Logged In!');
-      }
-    })
-    .finally(() => setIsLoading(false));
-    
+    signIn(action, { redirect: false })
+      .then((callback) => {
+        if (callback?.error) {
+          toast.error("Invalid Credentials");
+        }
+        if (callback?.ok && !callback?.error) {
+          toast.success("Logged In!");
+        }
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -117,77 +117,63 @@ const AuthForm = () => {
             />
           )}
           <Input
-              register={register}
-              errors={errors}
-              type="email"
-              id="email"
-              label="Email address"
-              disabled={isLoading}
-            />
-            <Input
-              register={register}
-              errors={errors}
-              type="password"
-              id="password"
-              label="Password"
-              disabled={isLoading}
-            />
-            
-            <div>
-                
-                <Button
-                disabled={isLoading}
-                fullwidth
-                type= 'submit'
-                >
-                    {variant === 'LOGIN' ? 'Sign in' : 'Register'}
-                </Button>
-            </div>
+            register={register}
+            errors={errors}
+            type="email"
+            id="email"
+            label="Email address"
+            disabled={isLoading}
+          />
+          <Input
+            register={register}
+            errors={errors}
+            type="password"
+            id="password"
+            label="Password"
+            disabled={isLoading}
+          />
 
+          <div>
+            <Button disabled={isLoading} fullwidth type="submit">
+              {variant === "LOGIN" ? "Sign in" : "Register"}
+            </Button>
+          </div>
         </form>
         <div className="mt-6">
-            <div className="relative">
-                <div
-                className="
+          <div className="relative">
+            <div
+              className="
                 absolute
                 inset-0
                 flex
                 items-center
                 "
-                >
-                    <div className="w-full border-t border-gray-300"/>
-
-
-                    
-
-                </div>
-                <div className="relative flex justify-center text-sm">
-                    <span className="bg-white px-2 text-gray-500">
-                        Or Continue with
-
-                    </span>
-
-                </div>
-
+            >
+              <div className="w-full border-t border-gray-300" />
             </div>
-            <div className="mt-6 flex gap-2">
-                <AuthSocialButton 
-                icon={BsGithub}
-                onClick={() => socialAction('github')}
-                />
-                 <AuthSocialButton 
-                icon={BsGoogle}
-                onClick={() => socialAction('google')}
-                />
-                 <AuthSocialButton 
-                icon={BsDiscord}
-                onClick={() => socialAction('discord')}
-                />
-
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-white px-2 text-gray-500">
+                Or Continue with
+              </span>
             </div>
-
+          </div>
+          <div className="mt-6 flex gap-2">
+            <AuthSocialButton
+              icon={BsGithub}
+              onClick={() => socialAction("github")}
+            />
+            <AuthSocialButton
+              icon={BsGoogle}
+              onClick={() => socialAction("google")}
+            />
+            <AuthSocialButton
+              icon={BsDiscord}
+              onClick={() => socialAction("discord")}
+            />
+          </div>
         </div>
-        <div className="
+        <div
+          className="
         flex
         gap-2
         justify-center
@@ -195,19 +181,14 @@ const AuthForm = () => {
         mt-6
         px-2
         text-gray-500
-        ">
-            <div>
-                {variant === 'LOGIN' ? 'New Commer?' : 'Already have an account?'}
-            </div>
-            <div
-            onClick={toggleVariant}
-            className="unserline cursor-pointer"
-            >
-                {variant === 'LOGIN' ? 'Create Account' : 'Login'}
-
-            </div>
-
-
+        "
+        >
+          <div>
+            {variant === "LOGIN" ? "New Commer?" : "Already have an account?"}
+          </div>
+          <div onClick={toggleVariant} className="unserline cursor-pointer">
+            {variant === "LOGIN" ? "Create Account" : "Login"}
+          </div>
         </div>
       </div>
     </div>

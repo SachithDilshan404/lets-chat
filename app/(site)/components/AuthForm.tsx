@@ -140,9 +140,7 @@ const AuthForm = () => {
                 fullwidth
                 type= 'submit'
                 >
-                    
-                  
-                    {variant === 'LOGIN' ? 'Sign in' : 'Register' }
+                    {variant === 'LOGIN' ? 'Sign in' : 'Register'}
                 </Button>
             </div>
 

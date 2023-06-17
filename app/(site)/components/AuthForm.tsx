@@ -15,7 +15,7 @@ type Variant = "LOGIN" | "REGISTER";
 const AuthForm = () => {
   const session = useSession();
   const router = useRouter();
-  const [variant, setVariant] = useState<Variant>("LOGIN");
+  const [variant, setVariant] = useState<Variant>('LOGIN');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect (() => {
@@ -35,12 +35,12 @@ const AuthForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, }
+    formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
-      email: "",
-      password: "",
+      name: '',
+      email: '',
+      password: ''
     },
   });
 
@@ -132,13 +132,17 @@ const AuthForm = () => {
               label="Password"
               disabled={isLoading}
             />
+            
             <div>
+                
                 <Button
                 disabled={isLoading}
                 fullwidth
-                type="submit"
+                type= 'submit'
                 >
-                    {variant === 'LOGIN' ? 'Sign in' : 'Register'}
+                    
+                  
+                    {variant === 'LOGIN' ? 'Sign in' : 'Register' }
                 </Button>
             </div>
 

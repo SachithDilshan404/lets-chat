@@ -6,9 +6,9 @@ import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 interface MessageInputProps {
     placeholder?: string;
     id: string;
-    type: string;
+    type?: string;
     required?: boolean;
-    register?: UseFormRegister<FieldValues>;
+    register: UseFormRegister<FieldValues>;
     errors: FieldErrors
 }
 const MessageInput: React.FC <MessageInputProps> = ({

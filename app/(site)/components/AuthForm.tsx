@@ -20,7 +20,7 @@ const AuthForm = () => {
 
   useEffect(() => {
     if (session?.status === "authenticated") {
-      router.push('/conversations');
+      router.push('/users');
     }
   }, [session?.status, router]);
 
@@ -65,7 +65,7 @@ const AuthForm = () => {
           }
           if (callback?.ok && !callback?.error) {
             toast.success("Logged In!");
-            router.push('/conversations');
+            router.push('/users');
           }
         })
         .finally(() => setIsLoading(false));
